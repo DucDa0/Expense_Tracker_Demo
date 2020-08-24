@@ -1,19 +1,19 @@
-export default (state, {type,payload})=>{
-    switch(type){
+export default (state, action)=>{
+    switch(action.type){
         case 'GET_TRANS':
             return{
                 ...state,
-                transactions: payload
+                transactions: action.payload
             }
         case 'DELETE_TRANS':
             return{
                 ...state,
-                transactions: state.transactions.filter(item=>item.id!==payload)
+                transactions: state.transactions.filter(item=>item.id!==action.payload)
             }
         case 'ADD_TRANS':
             return{
                 ...state,
-                transactions: [...state.transactions,payload]
+                transactions: [...state.transactions,action.payload]
             }
         case 'CLEAR_TRANS':
 

@@ -5,17 +5,8 @@ import { Transaction } from './Transaction';
 export const TransactionList = () => {
     const {transactions, clearTransaction, getTransaction}=useContext(GlobalContext);
     const [value,setValue]=useState('all');
-    const filterTransaction=(value)=>{
-        let filterData;
-        if(value==='income'){
-            filterData=transactions.filter(item=>item.amount>=0)
-        }else if(value==='expense'){
-            filterData=transactions.filter(item=>item.amount<0)
-        }else{
-            filterData=transactions
-        }
-        return filterData;
-    }
+    const filterData=value==='income'?transactions.filter(item=>item.amount>=0)
+    :value==='expense'?transactions.filter(item=>item.amount<0):transactions;
     const handleChange=(e)=>{
         setValue(e.target.value);
     }
@@ -37,7 +28,7 @@ export const TransactionList = () => {
             </div>
             <ul id="list" className="list">
                 {
-                    filterTransaction(value).map(tran=>(
+                    filterData.map(tran=>(
                       <Transaction key={tran.id} tran={tran}/>
                     ))
                 }

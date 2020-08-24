@@ -14,7 +14,7 @@ export const AddTransaction = () => {
     }
     const handleOnsubmit=(e)=>{
         e.preventDefault();
-        if(!text){
+        if(!text || !amount){
             return;
         }
         const newTran={
