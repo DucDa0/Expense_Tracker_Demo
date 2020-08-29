@@ -22,9 +22,8 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const delTransaction = (id) => {
-    const index = data.indexOf(data[id]);
-    data.splice(index, 1);
-    localStorage.setItem('transList', JSON.stringify(data));
+    const filterData = data.filter((item) => item.id !== id);
+    localStorage.setItem('transList', JSON.stringify(filterData));
     dispatch({
       type: 'DELETE_TRANS',
       payload: id,
